@@ -2,73 +2,22 @@ import chai from "chai";
 
 import Game from "./Game";
 
+import * as testData from "./testData";
+
 import {
     getNeighbors
 } from "./Game";
 
 const expect = chai.expect;
 
-const testValues = [
-    [
-        { x: 0, y: 0, color: 'green' },
-        { x: 0, y: 1, color: 'red' },
-        { x: 0, y: 2, color: 'blue' },
-        { x: 0, y: 3, color: 'red' }
-    ],
-    [
-        { x: 1, y: 0, color: 'red' },
-        { x: 1, y: 1, color: 'blue' },
-        { x: 1, y: 2, color: 'red' },
-        { x: 1, y: 3, color: 'red' }
-    ],
-    [
-        { x: 2, y: 0, color: 'green' },
-        { x: 2, y: 1, color: 'blue' },
-        { x: 2, y: 2, color: 'blue' },
-        { x: 2, y: 3, color: 'green' }
-    ],
-    [
-        { x: 3, y: 0, color: 'red' },
-        { x: 3, y: 1, color: 'blue' },
-        { x: 3, y: 2, color: 'red' },
-        { x: 3, y: 3, color: 'red' }
-    ]
-];
-
-const testValues2 = [
-    [
-        { x: 0, y: 0, color: 'red' },
-        { x: 0, y: 1, color: 'red' },
-        { x: 0, y: 2, color: 'blue' },
-        { x: 0, y: 3, color: 'red' }
-    ],
-    [
-        { x: 1, y: 0, color: 'red' },
-        { x: 1, y: 1, color: 'blue' },
-        { x: 1, y: 2, color: 'red' },
-        { x: 1, y: 3, color: 'red' }
-    ],
-    [
-        { x: 2, y: 0, color: 'green' },
-        { x: 2, y: 1, color: 'blue' },
-        { x: 2, y: 2, color: 'blue' },
-        { x: 2, y: 3, color: 'green' }
-    ],
-    [
-        { x: 3, y: 0, color: 'red' },
-        { x: 3, y: 1, color: 'blue' },
-        { x: 3, y: 2, color: 'red' },
-        { x: 3, y: 3, color: 'red' }
-    ]
-]
-
 describe("Checks the neighbors are correctly returned", function () {
     it("for origin", function () {
         let expectedResult = [{ "color": "red", "x": 1, "y": 0 }, { "color": "red", "x": 0, "y": 1 }];
-        let size = testValues.length;
+        let size = testData.testValues.length;
+        let matrixData = testData.testValues;
 
         let game = new Game();
-        game.initialize(size, testValues);
+        game.initialize(size, matrixData);
 
         let result = game.getNeighbors(0, 0, size);
 
@@ -77,10 +26,11 @@ describe("Checks the neighbors are correctly returned", function () {
 
     it("for given data 1", function () {
         let expectedResult = [{ "color": "red", "x": 0, "y": 1 }, { "color": "blue", "x": 2, "y": 1 }, { "color": "red", "x": 1, "y": 0 }, { "color": "red", "x": 1, "y": 2 }];
-        let size = testValues.length;
+        let size = testData.testValues.length;
+        let matrixData = testData.testValues;
 
         let game = new Game();
-        game.initialize(size, testValues);
+        game.initialize(size, matrixData);
 
         let result = game.getNeighbors(1, 1, size);
 
@@ -89,10 +39,11 @@ describe("Checks the neighbors are correctly returned", function () {
 
     it("for given data 2", function () {
         let expectedResult = [{ "color": "red", "x": 1, "y": 3 }, { "color": "red", "x": 3, "y": 3 }, { "color": "blue", "x": 2, "y": 2 }];
-        let size = testValues.length;
+        let size = testData.testValues.length;
+        let matrixData = testData.testValues;
 
         let game = new Game();
-        game.initialize(size, testValues);
+        game.initialize(size, matrixData);
 
         let result = game.getNeighbors(2, 3, size);
 
@@ -101,10 +52,11 @@ describe("Checks the neighbors are correctly returned", function () {
 
     it("for given data 3", function () {
         let expectedResult = [{ "color": "green", "x": 2, "y": 3 }, { "color": "red", "x": 3, "y": 2 }];
-        let size = testValues.length;
+        let size = testData.testValues.length;
+        let matrixData = testData.testValues;
 
         let game = new Game();
-        game.initialize(size, testValues);
+        game.initialize(size, matrixData);
 
         let result = game.getNeighbors(3, 3, size);
 
@@ -115,14 +67,17 @@ describe("Checks the neighbors are correctly returned", function () {
 describe("Returns tiles that will be updated by the given color", function () {
     it("for green color and test values 1", function () {
         let greenExpectedResult = [];
-        let size = testValues.length;
         let color = "green";
         let startPositionX = 0;
         let startPositionY = 0;
         let positions = [];
 
+        let size = testData.testValues.length;
+        let matrixData = testData.testValues;
+
         let game = new Game();
-        game.initialize(size, testValues);
+        game.initialize(size, matrixData);
+
         const matrix = game.getMatrix();
 
         game.calculateForColor(color, startPositionX, startPositionY, positions, matrix);
@@ -145,14 +100,17 @@ describe("Returns tiles that will be updated by the given color", function () {
                 "y": 1,
             },
         ];
-        let size = testValues.length;
         let color = "red";
         let startPositionX = 0;
         let startPositionY = 0;
         let positions = [];
 
+        let size = testData.testValues.length;
+        let matrixData = testData.testValues;
+
         let game = new Game();
-        game.initialize(size, testValues);
+        game.initialize(size, matrixData);
+
         const matrix = game.getMatrix();
 
         game.calculateForColor(color, startPositionX, startPositionY, positions, matrix);
@@ -162,14 +120,17 @@ describe("Returns tiles that will be updated by the given color", function () {
 
     it("for blue color and test values 1", function () {
         let blueExpectedResult = [];
-        let size = testValues.length;
         let color = "blue";
         let startPositionX = 0;
         let startPositionY = 0;
         let positions = [];
 
+        let size = testData.testValues.length;
+        let matrixData = testData.testValues;
+
         let game = new Game();
-        game.initialize(size, testValues);
+        game.initialize(size, matrixData);
+
         const matrix = game.getMatrix();
 
         game.calculateForColor(color, startPositionX, startPositionY, positions, matrix);
@@ -179,14 +140,17 @@ describe("Returns tiles that will be updated by the given color", function () {
 
     it("for green color and test values 2", function () {
         let greenExpectedResult = [];
-        let size = testValues2.length;
         let color = "green";
         let startPositionX = 0;
         let startPositionY = 0;
         let positions = [];
 
+        let size = testData.testValues2.length;
+        let matrixData = testData.testValues2;
+
         let game = new Game();
-        game.initialize(size, testValues2);
+        game.initialize(size, matrixData);
+
         const matrix = game.getMatrix();
 
         game.calculateForColor(color, startPositionX, startPositionY, positions, matrix);
@@ -209,14 +173,17 @@ describe("Returns tiles that will be updated by the given color", function () {
                 "y": 1,
             },
         ];
-        let size = testValues2.length;
         let color = "red";
         let startPositionX = 0;
         let startPositionY = 0;
         let positions = [];
 
+        let size = testData.testValues2.length;
+        let matrixData = testData.testValues2;
+
         let game = new Game();
-        game.initialize(size, testValues2);
+        game.initialize(size, matrixData);
+
         const matrix = game.getMatrix();
 
         game.calculateForColor(color, startPositionX, startPositionY, positions, matrix);
@@ -226,14 +193,17 @@ describe("Returns tiles that will be updated by the given color", function () {
 
     it("for blue color and test values 2", function () {
         let blueExpectedResult = [];
-        let size = testValues2.length;
         let color = "blue";
         let startPositionX = 0;
         let startPositionY = 0;
         let positions = [];
 
+        let size = testData.testValues2.length;
+        let matrixData = testData.testValues2;
+
         let game = new Game();
-        game.initialize(size, testValues2);
+        game.initialize(size, matrixData);
+
         const matrix = game.getMatrix();
         let originColor = matrix[0][0].color;
 
@@ -245,14 +215,48 @@ describe("Returns tiles that will be updated by the given color", function () {
 
 describe("Runs complete game", function () {
     it("for test values 1", function () {
-        let size = testValues.length;
         let expectedSteps = [{ "color": "red", "positions": [{ "color": "green", "visited": false, "x": 0, "y": 0 }, { "color": "green", "visited": false, "x": 1, "y": 0 }, { "color": "green", "visited": false, "x": 0, "y": 1 }] }, { "color": "blue", "positions": [{ "color": "green", "visited": false, "x": 1, "y": 0 }, { "color": "green", "visited": false, "x": 0, "y": 1 }, { "color": "green", "visited": false, "x": 0, "y": 0 }, { "color": "green", "visited": false, "x": 1, "y": 1 }, { "color": "green", "visited": false, "x": 2, "y": 1 }, { "color": "green", "visited": false, "x": 3, "y": 1 }, { "color": "green", "visited": false, "x": 2, "y": 2 }, { "color": "green", "visited": false, "x": 0, "y": 2 }] }, { "color": "red", "positions": [{ "color": "green", "visited": false, "x": 1, "y": 0 }, { "color": "green", "visited": false, "x": 1, "y": 1 }, { "color": "green", "visited": false, "x": 0, "y": 1 }, { "color": "green", "visited": false, "x": 0, "y": 2 }, { "color": "green", "visited": false, "x": 2, "y": 1 }, { "color": "green", "visited": false, "x": 3, "y": 1 }, { "color": "green", "visited": false, "x": 2, "y": 2 }, { "color": "green", "visited": false, "x": 0, "y": 0 }, { "color": "green", "visited": false, "x": 1, "y": 2 }, { "color": "green", "visited": false, "x": 1, "y": 3 }, { "color": "green", "visited": false, "x": 0, "y": 3 }, { "color": "green", "visited": false, "x": 3, "y": 0 }, { "color": "green", "visited": false, "x": 3, "y": 2 }, { "color": "green", "visited": false, "x": 3, "y": 3 }] }, { "color": "green", "positions": [{ "color": "green", "visited": false, "x": 1, "y": 0 }, { "color": "green", "visited": false, "x": 1, "y": 1 }, { "color": "green", "visited": false, "x": 0, "y": 1 }, { "color": "green", "visited": false, "x": 0, "y": 2 }, { "color": "green", "visited": false, "x": 1, "y": 2 }, { "color": "green", "visited": false, "x": 2, "y": 2 }, { "color": "green", "visited": false, "x": 3, "y": 2 }, { "color": "green", "visited": false, "x": 3, "y": 1 }, { "color": "green", "visited": false, "x": 2, "y": 1 }, { "color": "green", "visited": false, "x": 3, "y": 0 }, { "color": "green", "visited": false, "x": 3, "y": 3 }, { "color": "green", "visited": false, "x": 1, "y": 3 }, { "color": "green", "visited": false, "x": 0, "y": 3 }, { "color": "green", "visited": false, "x": 0, "y": 0 }, { "color": "green", "visited": false, "x": 2, "y": 0 }, { "color": "green", "visited": false, "x": 2, "y": 3 }] }];
 
+        let size = testData.testValues.length;
+        let matrixData = testData.testValues;
+
         let game = new Game();
-        game.initialize(size, testValues);
+        game.initialize(size, matrixData);
 
         let stepsHistory = game.calculateAndMove();
 
         expect(stepsHistory).to.deep.equal(expectedSteps);
+    });
+});
+
+describe("Checks all tiles of the board have the same color", function () {
+    it("for test values 1", function () {
+        let matrixData = testData.matrixWithAllTilesButOneInRed;
+
+        let game = new Game();
+
+        let result = game.isBoardFilled(matrixData);
+
+        expect(result).to.deep.equal(false);
+    });
+
+    it("for test values 2", function () {
+        let matrixData = testData.matrixWithAllTilesButOriginRed;
+
+        let game = new Game();
+
+        let result = game.isBoardFilled(matrixData);
+
+        expect(result).to.deep.equal(false);
+    });
+
+    it("for test values 3", function () {
+        let matrixData = testData.matrixWithAllTilesRed;
+
+        let game = new Game();
+
+        let result = game.isBoardFilled(matrixData);
+
+        expect(result).to.deep.equal(true);
     });
 });

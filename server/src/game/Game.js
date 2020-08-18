@@ -25,17 +25,10 @@ export default class Game {
                 this.matrix[x][y] = item;
             }
         }
-
-        // console.log(this.matrix);
     }
 
     print() {
         console.log(this.matrix);
-        // for (let i = 0; i < this.size; i++) {
-        //     for (let j = 0; j < this.size; j++) {
-        //         console.log(this.matrix[i][j]);
-        //     }
-        // }
     }
 
     getNeighbors(x, y, size) {
