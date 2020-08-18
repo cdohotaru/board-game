@@ -36,11 +36,9 @@ export function initAndPrint() {
     let game = new Game();
 
     let testValues = getTestValues();
-    game.initialize(testValues.length, testValues);
+    game.initialize(7);
 
     game.print();
 
     return game.calculateAndMove();
 }
-
-// initAndPrint();

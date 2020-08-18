@@ -113,116 +113,116 @@ describe("Checks the neighbors are correctly returned", function () {
 });
 
 describe("Returns tiles that will be updated by the given color", function () {
-    // it("for green color and test values 1", function () {
-    //     let greenExpectedResult = [];
-    //     let size = testValues.length;
-    //     let color = "green";
-    //     let startPositionX = 0;
-    //     let startPositionY = 0;
-    //     let positions = [];
+    it("for green color and test values 1", function () {
+        let greenExpectedResult = [];
+        let size = testValues.length;
+        let color = "green";
+        let startPositionX = 0;
+        let startPositionY = 0;
+        let positions = [];
 
-    //     let game = new Game();
-    //     game.initialize(size, testValues);
-    //     const matrix = game.getMatrix();
+        let game = new Game();
+        game.initialize(size, testValues);
+        const matrix = game.getMatrix();
 
-    //     let result = game.calculateForColor(color, startPositionX, startPositionY, positions, matrix);
+        game.calculateForColor(color, startPositionX, startPositionY, positions, matrix);
 
-    //     expect(result).to.deep.equal(greenExpectedResult);
-    // });
+        expect(positions).to.deep.equal(greenExpectedResult);
+    });
 
-    // it("for red colonr and test values 1", function () {
-    //     let redExpectedResult = [
-    //         {
-    //             "color": "red",
-    //             "visited": true,
-    //             "x": 1,
-    //             "y": 0,
-    //         },
-    //         {
-    //             "color": "red",
-    //             "visited": true,
-    //             "x": 0,
-    //             "y": 1,
-    //         },
-    //     ];
-    //     let size = testValues.length;
-    //     let color = "red";
-    //     let startPositionX = 0;
-    //     let startPositionY = 0;
-    //     let positions = [];
+    it("for red colonr and test values 1", function () {
+        let redExpectedResult = [
+            {
+                "color": "red",
+                "visited": true,
+                "x": 1,
+                "y": 0,
+            },
+            {
+                "color": "red",
+                "visited": true,
+                "x": 0,
+                "y": 1,
+            },
+        ];
+        let size = testValues.length;
+        let color = "red";
+        let startPositionX = 0;
+        let startPositionY = 0;
+        let positions = [];
 
-    //     let game = new Game();
-    //     game.initialize(size, testValues);
-    //     const matrix = game.getMatrix();
+        let game = new Game();
+        game.initialize(size, testValues);
+        const matrix = game.getMatrix();
 
-    //     let result = game.calculateForColor(color, startPositionX, startPositionY, positions, matrix);
+        game.calculateForColor(color, startPositionX, startPositionY, positions, matrix);
 
-    //     expect(result).to.deep.equal(redExpectedResult);
-    // });
+        expect(positions).to.deep.equal(redExpectedResult);
+    });
 
-    // it("for blue color and test values 1", function () {
-    //     let blueExpectedResult = [];
-    //     let size = testValues.length;
-    //     let color = "blue";
-    //     let startPositionX = 0;
-    //     let startPositionY = 0;
-    //     let positions = [];
+    it("for blue color and test values 1", function () {
+        let blueExpectedResult = [];
+        let size = testValues.length;
+        let color = "blue";
+        let startPositionX = 0;
+        let startPositionY = 0;
+        let positions = [];
 
-    //     let game = new Game();
-    //     game.initialize(size, testValues);
-    //     const matrix = game.getMatrix();
+        let game = new Game();
+        game.initialize(size, testValues);
+        const matrix = game.getMatrix();
 
-    //     let result = game.calculateForColor(color, startPositionX, startPositionY, positions, matrix);
+        game.calculateForColor(color, startPositionX, startPositionY, positions, matrix);
 
-    //     expect(result).to.deep.equal(blueExpectedResult);
-    // });
+        expect(positions).to.deep.equal(blueExpectedResult);
+    });
 
-    // it("for green color and test values 2", function () {
-    //     let greenExpectedResult = [];
-    //     let size = testValues2.length;
-    //     let color = "green";
-    //     let startPositionX = 0;
-    //     let startPositionY = 0;
-    //     let positions = [];
+    it("for green color and test values 2", function () {
+        let greenExpectedResult = [];
+        let size = testValues2.length;
+        let color = "green";
+        let startPositionX = 0;
+        let startPositionY = 0;
+        let positions = [];
 
-    //     let game = new Game();
-    //     game.initialize(size, testValues2);
-    //     const matrix = game.getMatrix();
+        let game = new Game();
+        game.initialize(size, testValues2);
+        const matrix = game.getMatrix();
 
-    //     let result = game.calculateForColor(color, startPositionX, startPositionY, positions, matrix);
+        game.calculateForColor(color, startPositionX, startPositionY, positions, matrix);
 
-    //     expect(result).to.deep.equal(greenExpectedResult);
-    // });
+        expect(positions).to.deep.equal(greenExpectedResult);
+    });
 
-    // it("for red color and test values 2", function () {
-    //     let redExpectedResult = [
-    //         {
-    //             "color": "red",
-    //             "visited": true,
-    //             "x": 1,
-    //             "y": 0,
-    //         },
-    //         {
-    //             "color": "red",
-    //             "visited": true,
-    //             "x": 0,
-    //             "y": 1,
-    //         },
-    //     ];
-    //     let size = testValues2.length;
-    //     let color = "red";
-    //     let startPositionX = 0;
-    //     let startPositionY = 0;
-    //     let positions = [];
+    it("for red color and test values 2", function () {
+        let redExpectedResult = [
+            {
+                "color": "red",
+                "visited": true,
+                "x": 1,
+                "y": 0,
+            },
+            {
+                "color": "red",
+                "visited": true,
+                "x": 0,
+                "y": 1,
+            },
+        ];
+        let size = testValues2.length;
+        let color = "red";
+        let startPositionX = 0;
+        let startPositionY = 0;
+        let positions = [];
 
-    //     let game = new Game();
-    //     game.initialize(size, testValues2);
-    //     const matrix = game.getMatrix();
+        let game = new Game();
+        game.initialize(size, testValues2);
+        const matrix = game.getMatrix();
 
-    //     let result = game.calculateForColor(color, startPositionX, startPositionY, positions, matrix);
+        game.calculateForColor(color, startPositionX, startPositionY, positions, matrix);
 
-    //     expect(result).to.deep.equal(redExpectedResult);
-    // });
+        expect(positions).to.deep.equal(redExpectedResult);
+    });
 
     it("for blue color and test values 2", function () {
         let blueExpectedResult = [];
@@ -243,3 +243,16 @@ describe("Returns tiles that will be updated by the given color", function () {
     });
 });
 
+describe("Runs complete game", function () {
+    it("for test values 1", function () {
+        let size = testValues.length;
+        let expectedSteps = [{ "color": "red", "positions": [{ "color": "green", "visited": false, "x": 0, "y": 0 }, { "color": "green", "visited": false, "x": 1, "y": 0 }, { "color": "green", "visited": false, "x": 0, "y": 1 }] }, { "color": "blue", "positions": [{ "color": "green", "visited": false, "x": 1, "y": 0 }, { "color": "green", "visited": false, "x": 0, "y": 1 }, { "color": "green", "visited": false, "x": 0, "y": 0 }, { "color": "green", "visited": false, "x": 1, "y": 1 }, { "color": "green", "visited": false, "x": 2, "y": 1 }, { "color": "green", "visited": false, "x": 3, "y": 1 }, { "color": "green", "visited": false, "x": 2, "y": 2 }, { "color": "green", "visited": false, "x": 0, "y": 2 }] }, { "color": "red", "positions": [{ "color": "green", "visited": false, "x": 1, "y": 0 }, { "color": "green", "visited": false, "x": 1, "y": 1 }, { "color": "green", "visited": false, "x": 0, "y": 1 }, { "color": "green", "visited": false, "x": 0, "y": 2 }, { "color": "green", "visited": false, "x": 2, "y": 1 }, { "color": "green", "visited": false, "x": 3, "y": 1 }, { "color": "green", "visited": false, "x": 2, "y": 2 }, { "color": "green", "visited": false, "x": 0, "y": 0 }, { "color": "green", "visited": false, "x": 1, "y": 2 }, { "color": "green", "visited": false, "x": 1, "y": 3 }, { "color": "green", "visited": false, "x": 0, "y": 3 }, { "color": "green", "visited": false, "x": 3, "y": 0 }, { "color": "green", "visited": false, "x": 3, "y": 2 }, { "color": "green", "visited": false, "x": 3, "y": 3 }] }, { "color": "green", "positions": [{ "color": "green", "visited": false, "x": 1, "y": 0 }, { "color": "green", "visited": false, "x": 1, "y": 1 }, { "color": "green", "visited": false, "x": 0, "y": 1 }, { "color": "green", "visited": false, "x": 0, "y": 2 }, { "color": "green", "visited": false, "x": 1, "y": 2 }, { "color": "green", "visited": false, "x": 2, "y": 2 }, { "color": "green", "visited": false, "x": 3, "y": 2 }, { "color": "green", "visited": false, "x": 3, "y": 1 }, { "color": "green", "visited": false, "x": 2, "y": 1 }, { "color": "green", "visited": false, "x": 3, "y": 0 }, { "color": "green", "visited": false, "x": 3, "y": 3 }, { "color": "green", "visited": false, "x": 1, "y": 3 }, { "color": "green", "visited": false, "x": 0, "y": 3 }, { "color": "green", "visited": false, "x": 0, "y": 0 }, { "color": "green", "visited": false, "x": 2, "y": 0 }, { "color": "green", "visited": false, "x": 2, "y": 3 }] }];
+
+        let game = new Game();
+        game.initialize(size, testValues);
+
+        let stepsHistory = game.calculateAndMove();
+
+        expect(stepsHistory).to.deep.equal(expectedSteps);
+    });
+});

@@ -1,4 +1,4 @@
-const knownColors = ["red", "blue", "green"];
+const knownColors = ["red", "blue", "green", "yellow"];
 
 export default class Game {
     constructor() {
@@ -68,7 +68,7 @@ export default class Game {
         return this.matrix;
     }
 
-    calculateForColor(color, startPositionX, startPositionY, positions, matrix, originColor) {
+    calculateForColor(color, startPositionX, startPositionY, positions, matrix) {
         matrix[startPositionX][startPositionY].visited = true;
 
         let neighbors = this.getNeighbors(startPositionX, startPositionY, matrix.length);
@@ -79,7 +79,7 @@ export default class Game {
 
                 if (item.color === color) {
                     positions.push(item);
-                    this.calculateForColor(color, neighbor.x, neighbor.y, positions, matrix, originColor);
+                    this.calculateForColor(color, neighbor.x, neighbor.y, positions, matrix);
                 }
             }
         });
@@ -96,7 +96,7 @@ export default class Game {
     // returns the variant with maximum positions that would be covered, doesn't consider color rank
     // TODO how is the color rank calculated?
     selectOptimalMove(variants) {
-        console.log("variants: ", variants);
+
         let index = -1;
         let maxElements = -1;
         for (let i = 0; i < variants.length; i++) {
@@ -152,7 +152,6 @@ export default class Game {
 
             // get neighbors of the origin with the origin color
             this.calculateForColor(originColor, 0, 0, collector, this.matrix);
-            console.log("color and matrix: ", color, this.matrix, originColor, collector);
 
             // for each run we need to add the origin
             collector.push(this.matrix[0][0]);
@@ -182,7 +181,6 @@ export default class Game {
 
             allVariants.push(variant);
             this.resetVisitedFlag(this.matrix);
-            console.log("allV: ", allVariants);
         });
 
         return allVariants;
@@ -191,7 +189,6 @@ export default class Game {
     calculateAndMove() {
         let isBoardFilled = false;
 
-        let counter = 0;
         do {
 
             let allVariants = this.getPossibleMoves();
@@ -200,19 +197,13 @@ export default class Game {
 
             this.addStep(variant);
 
-            console.log("selectedVariant: ", variant);
-
             this.colorTiles(variant.positions, variant.color, this.matrix);
-
-            console.log("m after coloring: ", this.matrix);
 
             isBoardFilled = this.isBoardFilled(this.matrix);
 
-            console.log("is board filled:", isBoardFilled);
-
-            counter++;
-
         } while (isBoardFilled === false);
+
+        console.log(`Finished game after ${this.steps.length} moves`);
 
         return this.steps;
     }
