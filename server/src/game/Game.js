@@ -4,6 +4,7 @@ export default class Game {
     constructor() {
         this.matrix = [];
         this.size = 0;
+        this.steps = [];
     }
 
     getRandomColor() {
@@ -94,7 +95,7 @@ export default class Game {
 
     // returns the variant with maximum positions that would be covered, doesn't consider color rank
     // TODO how is the color rank calculated?
-    selectVariant(variants) {
+    selectOptimalMove(variants) {
         console.log("variants: ", variants);
         let index = -1;
         let maxElements = -1;
@@ -109,15 +110,12 @@ export default class Game {
         if (index === -1) {
             console.log("Result is -1");
         }
-        console.log("r:", index);
         return variants[index];
     }
 
     colorTiles(positions, color, matrix) {
-        console.log("positions, color: ", positions, color);
         for (let index = 0; index < positions.length; index++) {
             const position = positions[index];
-            console.log("position: ", position);
             matrix[position.x][position.y].color = color;
         }
     }
@@ -135,59 +133,72 @@ export default class Game {
         return true;
     }
 
+    addStep(variant) {
+        this.steps.push(variant);
+    }
+
+    getPossibleMoves() {
+        let allVariants = [];
+
+        knownColors.forEach(color => {
+
+            // get neigbors of the origin with the origin color
+            //      for each of them
+            //          get their neighbors with the new color
+            let setOfPositions = new Set();
+            let collector = [];
+
+            let originColor = this.matrix[0][0].color;
+
+            // get neighbors of the origin with the origin color
+            this.calculateForColor(originColor, 0, 0, collector, this.matrix);
+            console.log("color and matrix: ", color, this.matrix, originColor, collector);
+
+            // for each run we need to add the origin
+            collector.push(this.matrix[0][0]);
+
+            collector.forEach(element => {
+                setOfPositions.add(element);
+            });
+
+            this.resetVisitedFlag(this.matrix);
+
+            let collectorNeighborsOfNeighbors = []
+
+            // for each of the origin neighbors get the neightbors with the desired color
+            for (let index = 0; index < collector.length; index++) {
+                const originNeighbor = collector[index];
+                this.calculateForColor(color, originNeighbor.x, originNeighbor.y, collectorNeighborsOfNeighbors, this.matrix);
+            }
+
+            collectorNeighborsOfNeighbors.forEach(element => {
+                setOfPositions.add(element)
+            });
+
+            let variant = {
+                color,
+                positions: Array.from(setOfPositions)
+            }
+
+            allVariants.push(variant);
+            this.resetVisitedFlag(this.matrix);
+            console.log("allV: ", allVariants);
+        });
+
+        return allVariants;
+    }
+
     calculateAndMove() {
         let isBoardFilled = false;
 
         let counter = 0;
         do {
-            let allVariants = [];
 
-            knownColors.forEach(color => {
+            let allVariants = this.getPossibleMoves();
 
-                // get neigbors of the origin with the origin color
-                //      for each of them
-                //          get their neighbors with the new color
-                let setOfPositions = new Set();
-                let collector = [];
+            let variant = this.selectOptimalMove(allVariants);
 
-                let originColor = this.matrix[0][0].color;
-
-                // get neighbors of the origin with the origin color
-                this.calculateForColor(originColor, 0, 0, collector, this.matrix);
-                console.log("color and matrix: ", color, this.matrix, originColor, collector);
-
-                // for each run we need to add the origin
-                collector.push(this.matrix[0][0]);
-
-                collector.forEach(element => {
-                    setOfPositions.add(element);
-                });
-
-                this.resetVisitedFlag(this.matrix);
-
-                let collectorNeighborsOfNeighbors = []
-
-                // for each of the origin neighbors get the neightbors with the desired color
-                for (let index = 0; index < collector.length; index++) {
-                    const originNeighbor = collector[index];
-                    this.calculateForColor(color, originNeighbor.x, originNeighbor.y, collectorNeighborsOfNeighbors, this.matrix);
-                }
-
-                collectorNeighborsOfNeighbors.forEach(element => {
-                    setOfPositions.add(element)
-                });
-
-                let variant = {
-                    color,
-                    positions: Array.from(setOfPositions)
-                }
-
-                allVariants.push(variant);
-                this.resetVisitedFlag(this.matrix);
-                console.log("allV: ", allVariants);
-            });
-
-            let variant = this.selectVariant(allVariants);
+            this.addStep(variant);
 
             console.log("selectedVariant: ", variant);
 
@@ -203,6 +214,6 @@ export default class Game {
 
         } while (isBoardFilled === false);
 
-        return isBoardFilled;
+        return this.steps;
     }
 }
