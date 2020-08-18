@@ -1,6 +1,6 @@
 import Game from "./Game";
 
-function getTestValues() {
+export function getTestValues() {
     return [
         [
             { x: 0, y: 0, color: 'green' },
@@ -30,17 +30,17 @@ function getTestValues() {
 }
 
 
-function initAndPrint() {
+export function initAndPrint() {
     let size = 4;
 
     let game = new Game();
 
     let testValues = getTestValues();
-    game.initialize(testValues.length);
-    // game.initialize(testValues.length);
+    game.initialize(testValues.length, testValues);
+
     game.print();
 
-    game.calculateAndMove();
+    return game.calculateAndMove();
 }
 
-initAndPrint();
+// initAndPrint();
