@@ -4,10 +4,6 @@ import Game from "./Game";
 
 import * as testData from "./testData";
 
-import {
-    getNeighbors
-} from "./Game";
-
 const expect = chai.expect;
 
 describe("Checks the neighbors are correctly returned", function () {
@@ -15,9 +11,10 @@ describe("Checks the neighbors are correctly returned", function () {
         let expectedResult = [{ "color": "red", "x": 1, "y": 0 }, { "color": "red", "x": 0, "y": 1 }];
         let size = testData.testValues.length;
         let matrixData = testData.testValues;
+        let noOfColors = 3;
 
         let game = new Game();
-        game.initialize(size, matrixData);
+        game.initialize(size, noOfColors, matrixData);
 
         let result = game.getNeighbors(0, 0, size);
 
@@ -28,9 +25,10 @@ describe("Checks the neighbors are correctly returned", function () {
         let expectedResult = [{ "color": "red", "x": 0, "y": 1 }, { "color": "blue", "x": 2, "y": 1 }, { "color": "red", "x": 1, "y": 0 }, { "color": "red", "x": 1, "y": 2 }];
         let size = testData.testValues.length;
         let matrixData = testData.testValues;
+        let noOfColors = 3;
 
         let game = new Game();
-        game.initialize(size, matrixData);
+        game.initialize(size, noOfColors, matrixData);
 
         let result = game.getNeighbors(1, 1, size);
 
@@ -41,9 +39,10 @@ describe("Checks the neighbors are correctly returned", function () {
         let expectedResult = [{ "color": "red", "x": 1, "y": 3 }, { "color": "red", "x": 3, "y": 3 }, { "color": "blue", "x": 2, "y": 2 }];
         let size = testData.testValues.length;
         let matrixData = testData.testValues;
+        let noOfColors = 3;
 
         let game = new Game();
-        game.initialize(size, matrixData);
+        game.initialize(size, noOfColors, matrixData);
 
         let result = game.getNeighbors(2, 3, size);
 
@@ -54,9 +53,10 @@ describe("Checks the neighbors are correctly returned", function () {
         let expectedResult = [{ "color": "green", "x": 2, "y": 3 }, { "color": "red", "x": 3, "y": 2 }];
         let size = testData.testValues.length;
         let matrixData = testData.testValues;
+        let noOfColors = 3;
 
         let game = new Game();
-        game.initialize(size, matrixData);
+        game.initialize(size, noOfColors, matrixData);
 
         let result = game.getNeighbors(3, 3, size);
 
@@ -71,12 +71,13 @@ describe("Returns tiles that will be updated by the given color", function () {
         let startPositionX = 0;
         let startPositionY = 0;
         let positions = [];
+        let noOfColors = 3;
 
         let size = testData.testValues.length;
         let matrixData = testData.testValues;
 
         let game = new Game();
-        game.initialize(size, matrixData);
+        game.initialize(size, noOfColors, matrixData);
 
         const matrix = game.getMatrix();
 
@@ -104,12 +105,13 @@ describe("Returns tiles that will be updated by the given color", function () {
         let startPositionX = 0;
         let startPositionY = 0;
         let positions = [];
+        let noOfColors = 3;
 
         let size = testData.testValues.length;
         let matrixData = testData.testValues;
 
         let game = new Game();
-        game.initialize(size, matrixData);
+        game.initialize(size, noOfColors, matrixData);
 
         const matrix = game.getMatrix();
 
@@ -124,12 +126,13 @@ describe("Returns tiles that will be updated by the given color", function () {
         let startPositionX = 0;
         let startPositionY = 0;
         let positions = [];
+        let noOfColors = 3;
 
         let size = testData.testValues.length;
         let matrixData = testData.testValues;
 
         let game = new Game();
-        game.initialize(size, matrixData);
+        game.initialize(size, noOfColors, matrixData);
 
         const matrix = game.getMatrix();
 
@@ -144,12 +147,13 @@ describe("Returns tiles that will be updated by the given color", function () {
         let startPositionX = 0;
         let startPositionY = 0;
         let positions = [];
+        let noOfColors = 3;
 
         let size = testData.testValues2.length;
         let matrixData = testData.testValues2;
 
         let game = new Game();
-        game.initialize(size, matrixData);
+        game.initialize(size, noOfColors, matrixData);
 
         const matrix = game.getMatrix();
 
@@ -177,12 +181,13 @@ describe("Returns tiles that will be updated by the given color", function () {
         let startPositionX = 0;
         let startPositionY = 0;
         let positions = [];
+        let noOfColors = 3;
 
         let size = testData.testValues2.length;
         let matrixData = testData.testValues2;
 
         let game = new Game();
-        game.initialize(size, matrixData);
+        game.initialize(size, noOfColors, matrixData);
 
         const matrix = game.getMatrix();
 
@@ -197,12 +202,13 @@ describe("Returns tiles that will be updated by the given color", function () {
         let startPositionX = 0;
         let startPositionY = 0;
         let positions = [];
+        let noOfColors = 3;
 
         let size = testData.testValues2.length;
         let matrixData = testData.testValues2;
 
         let game = new Game();
-        game.initialize(size, matrixData);
+        game.initialize(size, noOfColors, matrixData);
 
         const matrix = game.getMatrix();
         let originColor = matrix[0][0].color;
@@ -219,9 +225,10 @@ describe("Runs complete game", function () {
 
         let size = testData.testValues.length;
         let matrixData = testData.testValues;
+        let noOfColors = 3;
 
         let game = new Game();
-        game.initialize(size, matrixData);
+        game.initialize(size, noOfColors, matrixData);
 
         let stepsHistory = game.calculateAndMove();
 

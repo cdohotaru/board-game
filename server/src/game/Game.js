@@ -1,18 +1,21 @@
-const knownColors = ["red", "blue", "green", "yellow"];
+const knownColors = ["red", "blue", "green", "yellow", "purple"];
 
 export default class Game {
     constructor() {
         this.matrix = [];
         this.size = 0;
         this.steps = [];
+        this.noOfColorsUsed = knownColors.length;
     }
 
     getRandomColor() {
-        return knownColors[Math.floor(Math.random() * knownColors.length)];
+        return knownColors[Math.floor(Math.random() * this.noOfColorsUsed)];
     }
 
-    initialize(boardSize, values = null) {
+    initialize(boardSize, noOfColors, values = null) {
         this.size = boardSize;
+        this.noOfColorsUsed = noOfColors;
+
         for (let x = 0; x < boardSize; x++) {
             this.matrix[x] = new Array(boardSize);
             for (let y = 0; y < boardSize; y++) {
