@@ -1,7 +1,9 @@
+import { Tile } from "../types";
+
 const knownColors = ["red", "blue", "green", "yellow", "purple"];
 
 export default class Game {
-    matrix: [{ x: number; y: number; color: string; visited?: boolean }[]] | [];
+    matrix: Tile[][];
     size: number;
     steps: { color: string; positions: [{ x: number; y: number; color: string; visited?: boolean }] }[];
     noOfColorsUsed: number;
@@ -64,7 +66,7 @@ export default class Game {
     }
 
     // for testing purposes
-    getMatrix(): [{ x: number; y: number; color: string }[]] | [] {
+    getMatrix(): Tile[][] {
         return this.matrix;
     }
 
@@ -73,7 +75,7 @@ export default class Game {
         startPositionX: number,
         startPositionY: number,
         positions: { x: number; y: number; color: string }[],
-        matrix: [{ x: number; y: number; color: string; visited?: boolean }[]] | [],
+        matrix: Tile[][],
     ): void {
         matrix[startPositionX][startPositionY].visited = true;
 
@@ -91,7 +93,7 @@ export default class Game {
         });
     }
 
-    resetVisitedFlag(matrix: [{ x: number; y: number; color: string; visited?: boolean }[]] | []): void {
+    resetVisitedFlag(matrix: Tile[][]): void {
         for (let x = 0; x < matrix.length; x++) {
             for (let y = 0; y < matrix.length; y++) {
                 this.matrix[x][y].visited = false;
@@ -123,7 +125,7 @@ export default class Game {
     colorTiles(
         positions: [{ x: number; y: number; color: string; visited?: boolean }],
         color: string,
-        matrix: [{ x: number; y: number; color: string }[]] | [],
+        matrix: Tile[][],
     ): void {
         for (let index = 0; index < positions.length; index++) {
             const position = positions[index];
@@ -131,7 +133,7 @@ export default class Game {
         }
     }
 
-    isBoardFilled(matrix: [{ x: number; y: number; color: string; visited?: boolean }[]] | []): boolean {
+    isBoardFilled(matrix: Tile[][]): boolean {
         const colors = new Set();
         for (let x = matrix.length - 1; x >= 0; x--) {
             for (let y = matrix.length - 1; y >= 0; y--) {

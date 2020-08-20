@@ -12,7 +12,7 @@ class GameRoute implements Route {
     }
 
     private initializeRoutes() {
-        this.router.get(`${this.path}`, this.gameController.play);
+        this.router.post(`${this.path}`, this.gameController.play);
     }
 }
 
